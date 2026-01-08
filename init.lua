@@ -80,6 +80,13 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+vim.cmd [[
+set laststatus=0
+hi! link StatusLine Normal
+hi! link StatusLineNC Normal
+set statusline=%{repeat('─',winwidth('.'))}
+]]
+
 require 'autocmd'
 require 'keymaps'
 require 'lazy-plugins'
