@@ -87,9 +87,9 @@ hi! link StatusLineNC Normal
 set statusline=%{repeat('─',winwidth('.'))}
 ]]
 
-require 'autocmd'
 require 'keymaps'
 require 'lazy-plugins'
+require 'autocmd'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
