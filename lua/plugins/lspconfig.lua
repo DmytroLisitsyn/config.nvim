@@ -219,11 +219,9 @@ return {
     vim.lsp.config('sourcekit', {
       cmd = { 'sourcekit-lsp' },
       capabilities = capabilities,
-      root_dir = function(filename, _)
-        local util = require 'lspconfig.util'
-        return util.root_pattern('buildServer.json', '*.xcodeproj', '*.xcworkspace', 'compile_commands.json', 'Package.swift')(filename)
-          or util.find_git_ancestor(filename)
-      end,
+      filetypes = { 'swift', 'objc', 'objcpp', 'c', 'cpp' },
+      -- Neovim 0.11+ natively supports root_markers without needing lspconfig.util!
+      root_markers = { 'buildServer.json', '*.xcodeproj', '*.xcworkspace', '.git' },
     })
     vim.lsp.enable 'sourcekit'
 
