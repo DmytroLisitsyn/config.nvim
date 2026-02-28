@@ -21,6 +21,8 @@ return { -- Highlight, edit, and navigate code
       'vimdoc',
       'python',
       'ruby',
+      'json',
+      'yaml',
     }
   end,
 }

@@ -206,6 +206,8 @@ return {
       },
       ruby_lsp = {},
       rubocop = {},
+      yamlls = {},
+      jsonls = {},
     }
 
     -- Ensure the servers and tools above are installed
@@ -227,6 +229,7 @@ return {
       'pyright',
       'black', -- Used to format Python code
       'rubocop', -- Used to format Ruby code
+      'prettier', -- Used to format JSON, YAML, etc.
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
