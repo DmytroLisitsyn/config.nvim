@@ -245,6 +245,8 @@ return {
       'black', -- Used to format Python code
       'rubocop', -- Used to format Ruby code
       'prettier', -- Used to format JSON, YAML, etc.
+      'swiftlint', -- Linter for Swift
+      'swiftformat', -- Formatter for Swift
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
