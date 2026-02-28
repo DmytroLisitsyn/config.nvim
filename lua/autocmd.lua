@@ -12,10 +12,28 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Start Treesitter for highlighting and folding natively in Nvim 0.11+
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'python' },
+  desc = 'Enable treesitter for all supported filetypes',
   callback = function()
-    vim.treesitter.start()
-    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    -- `vim.treesitter.start()` uses native C-based highlighting
+    -- It gracefully fails and ignores filetypes without an installed parser
+    pcall(vim.treesitter.start)
+
+    -- Optional: Use treesitter for folds
+    vim.opt_local.foldmethod = 'expr'
+    vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    -- Prevent folding on opening files
+    vim.opt_local.foldlevel = 99
   end,
 })
+
+-- Custom language to file relations
+vim.filetype.add {
+  filename = {
+    ['Appfile'] = 'ruby',
+    ['Fastfile'] = 'ruby',
+    ['Matchfile'] = 'ruby',
+    ['Pluginfile'] = 'ruby',
+  },
+}
