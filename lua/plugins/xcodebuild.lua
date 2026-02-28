@@ -1,8 +1,7 @@
 return {
   'wojciech-kulik/xcodebuild.nvim',
   dependencies = {
-    'nvim-telescope/telescope.nvim',
-    'folke/snacks.nvim',
+    'ibhagwan/fzf-lua',
     'nvim-neo-tree/neo-tree.nvim',
     'MunifTanjim/nui.nvim',
     'nvim-treesitter/nvim-treesitter',
@@ -18,11 +17,10 @@ return {
           enabled = true, -- enable updating Xcode project files when using neo-tree.nvim
         },
         telescope_nvim = {
-          enabled = true, -- enable telescope picker
+          enabled = false, -- enable telescope picker
         },
-        snacks_nvim = {
-          enabled = false, -- enable Snacks.nvim picker
-          layout = nil, -- Snacks layout config, check Snacks docs for details
+        fzf_lua = {
+          enabled = true, -- enable fzf-lua picker
         },
       },
     }
@@ -36,6 +34,6 @@ return {
     { '<leader>xT', '<cmd>XcodebuildTestClass<cr>', desc = 'Run This Test Class' },
     { '<leader>xl', '<cmd>XcodebuildToggleLogs<cr>', desc = 'Toggle Xcodebuild Logs' },
     { '<leader>xc', '<cmd>XcodebuildToggleCodeCoverage<cr>', desc = 'Toggle Code Coverage' },
-    { '<leader>xq', '<cmd>Telescope xcodebuild<cr>', desc = 'Show Xcodebuild Telescope' },
+    { '<leader>xq', '<cmd>XcodebuildPicker<cr>', desc = 'Show Xcodebuild Picker' },
   },
 }

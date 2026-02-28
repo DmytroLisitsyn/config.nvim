@@ -30,9 +30,9 @@ require('lazy').setup({
   { import = 'plugins' },
 
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
-  -- Or use telescope!
+  -- Or use fzf-lua!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
-  -- you can continue same window with `<space>sr` which resumes last telescope search
+  -- you can continue same window with `<space>sr` which resumes last fzf-lua search
 }, {
   rocks = {
     enabled = false,
