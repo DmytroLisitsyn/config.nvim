@@ -217,9 +217,15 @@ return {
     -- Set up sourcekit-lsp for Swift and Objective-C natively
     -- (sourcekit-lsp is bundled with Xcode/Swift toolchain, so we configure it outside of Mason)
     vim.lsp.config('sourcekit', {
+      cmd = { 'sourcekit-lsp' },
       capabilities = capabilities,
+      root_dir = function(filename, _)
+        local util = require 'lspconfig.util'
+        return util.root_pattern('buildServer.json', '*.xcodeproj', '*.xcworkspace', 'compile_commands.json', 'Package.swift')(filename)
+          or util.find_git_ancestor(filename)
+      end,
     })
-    vim.lsp.enable('sourcekit')
+    vim.lsp.enable 'sourcekit'
 
     -- Ensure the servers and tools above are installed
     --
@@ -241,8 +247,6 @@ return {
       'black', -- Used to format Python code
       'rubocop', -- Used to format Ruby code
       'prettier', -- Used to format JSON, YAML, etc.
-      'swiftlint', -- Linter for Swift
-      'swiftformat', -- Formatter for Swift
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

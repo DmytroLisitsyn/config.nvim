@@ -4,7 +4,8 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    image = { enabled = true },
+    notifier = { enabled = true },
+    notify = { enabled = true },
     rename = { enabled = true },
     scroll = { enabled = true },
     words = { enabled = true },
