@@ -23,6 +23,8 @@ return { -- Highlight, edit, and navigate code
       'ruby',
       'json',
       'yaml',
+      'swift',
+      'objc',
     }
   end,
 }
