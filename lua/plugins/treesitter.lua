@@ -25,6 +25,7 @@ return { -- Highlight, edit, and navigate code
       'yaml',
       'swift',
       'objc',
+      'regex',
     }
   end,
 }
