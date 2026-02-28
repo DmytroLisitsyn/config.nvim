@@ -25,7 +25,7 @@ return {
       },
       cmdline = {
         format = {
-          cmdline = { icon = ':' },
+          cmdline = { icon = ':', title = '' },
         },
       },
       views = {
@@ -35,13 +35,10 @@ return {
             col = '50%',
           },
           border = {
-            style = 'none',
+            style = 'rounded',
             padding = { 1, 1 },
           },
           filter_options = {},
-          win_options = {
-            winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
-          },
         },
       },
     }

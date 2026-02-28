@@ -35,5 +35,51 @@ vim.filetype.add {
     ['Fastfile'] = 'ruby',
     ['Matchfile'] = 'ruby',
     ['Pluginfile'] = 'ruby',
+    ['Snapfile'] = 'ruby',
   },
 }
+
+-- Custom Highlight Overrides
+local function apply_custom_highlights()
+  -- Make line numbers grey like comments
+  local comment_hl = vim.api.nvim_get_hl(0, { name = 'Comment' })
+  if comment_hl and comment_hl.fg then
+    vim.api.nvim_set_hl(0, 'LineNr', { fg = comment_hl.fg })
+    vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = comment_hl.fg })
+    vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = comment_hl.fg })
+  end
+
+  -- Helper to strip background from a highlight group
+  local function make_transparent(hl_name)
+    local hl = vim.api.nvim_get_hl(0, { name = hl_name, link = false })
+    if hl then
+      hl.bg = nil
+      ---@diagnostic disable-next-line: param-type-mismatch
+      vim.api.nvim_set_hl(0, hl_name, hl)
+    end
+  end
+
+  -- Make floating windows transparent globally
+  make_transparent 'NormalFloat'
+  make_transparent 'FloatBorder'
+  make_transparent 'FloatTitle'
+
+  -- Neo-tree specific highlights
+  make_transparent 'NeoTreeNormal'
+  make_transparent 'NeoTreeNormalNC'
+  make_transparent 'NeoTreeFloatNormal'
+  make_transparent 'NeoTreeFloatBorder'
+
+  -- Noice specific highlights
+  make_transparent 'NoiceCmdlinePopup'
+  make_transparent 'NoiceCmdlinePopupBorder'
+end
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  desc = 'Override highlight groups',
+  group = vim.api.nvim_create_augroup('custom-highlights', { clear = true }),
+  callback = apply_custom_highlights,
+})
+
+-- Apply immediately since colorscheme might have already loaded
+apply_custom_highlights()
