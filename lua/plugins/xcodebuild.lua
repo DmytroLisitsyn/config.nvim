@@ -22,6 +22,9 @@ return {
         fzf_lua = {
           enabled = true, -- enable fzf-lua picker
         },
+        nvim_dap = {
+          enabled = true, -- enable nvim-dap integration
+        },
       },
     }
   end,

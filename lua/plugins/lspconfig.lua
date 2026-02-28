@@ -14,8 +14,14 @@ return {
 
     -- Allows extra capabilities provided by blink.cmp
     'saghen/blink.cmp',
+
+    -- Java support
+    'nvim-java/nvim-java',
   },
   config = function()
+    -- Setup nvim-java before lspconfig
+    require('java').setup()
+
     -- Brief aside: **What is LSP?**
     --
     -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -77,6 +83,9 @@ return {
 
         -- WARN: This is not Goto Definition, this is Goto Declaration.
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+        -- Show documentation for what is under cursor
+        map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
         -- Fuzzy find all the symbols in your current document.
         map('<leader>ds', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
@@ -212,6 +221,9 @@ return {
       jsonls = {},
       jdtls = {},
       kotlin_language_server = {},
+      groovyls = {
+        cmd = { 'groovy-language-server' },
+      },
     }
 
     -- Set up sourcekit-lsp for Swift and Objective-C natively

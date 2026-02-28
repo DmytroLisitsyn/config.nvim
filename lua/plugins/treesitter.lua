@@ -26,6 +26,9 @@ return { -- Highlight, edit, and navigate code
       'swift',
       'objc',
       'regex',
+      'java',
+      'kotlin',
+      'groovy',
     }
   end,
 }
